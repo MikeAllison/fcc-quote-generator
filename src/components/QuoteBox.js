@@ -9,31 +9,31 @@ const QuoteBox = () => {
 
   useEffect(() => {
     fetch('https://api.quotable.io/random')
-      .then((resp) => {
+      .then(resp => {
         return resp.json();
       })
-      .then((data) => {
+      .then(data => {
         setQuote(data.content);
         setAuthor(data.author);
         setPostingUrl(
           `https://twitter.com/intent/tweet?text="${data.content}" - ${data.author}`
         );
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, []);
 
   const newQuoteHandler = () => {
     fetch('https://api.quotable.io/random')
-      .then((resp) => {
+      .then(resp => {
         return resp.json();
       })
-      .then((data) => {
+      .then(data => {
         setQuote(data.content);
         setAuthor(data.author);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   };
@@ -48,7 +48,9 @@ const QuoteBox = () => {
         <button id="new-quote" onClick={newQuoteHandler}>
           Load New Quote
         </button>
-        <a href={postingUrl}>Post to Twitter</a>
+        <a href={postingUrl} id="tweet-quote">
+          Post to Twitter
+        </a>
       </section>
     </div>
   );
